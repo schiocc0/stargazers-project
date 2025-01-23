@@ -1,0 +1,33 @@
+/* 
+  Localizable.strings
+  Stargazers
+
+  Created by Alessia Carrozzo on 19/01/25.
+  
+*/
+
+//MARK: Buttons
+"BUTTON.SEARCH" = "Cerca";
+"BUTTON.CLEAR.ALL" = "Svuota campi";
+
+//MARK: Errors
+"REQUIRED.FIELD.ERROR" = "Campo obbligatorio";
+
+//MARK: Home
+"OWNER.FIELD.TITLE" = "Proprietario";
+"OWNER.FIELD.PLACEHOLDER" = "Inserire nome proprietario";
+
+"REPO.FIELD.TITLE" = "Repository";
+"REPO.FIELD.PLACEHOLDER" = "Inserire nome repository";
+
+//MARK: UserList
+
+"USER.LIST.TITLE" = "Lista stargazers";
+
+"ERROR.TITLE" = "Si è verificato un errore";
+"ERROR.TEXT" = "Qualcosa è andato storto. Riprova più tardi.";
+"ERROR.BUTTON.OK" = "OK";
+
+
+
+
