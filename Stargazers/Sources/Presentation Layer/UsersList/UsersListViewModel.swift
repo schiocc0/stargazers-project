@@ -173,15 +173,16 @@ final class UsersListViewModel: BaseViewModel {
         return UIImage(data: data)
     }
     
+    /// Retrieve last page
     private func retrieveLastPage(from linkHeader: String) {
-        // Regex per estrarre il numero della pagina associato a rel="last"
+        // Regex to find page number associated to rel="last"
         let pattern = "page=(\\d+)>; rel=\"last\""
 
-        // Creazione della regex
+        // Regex creation
         if let regex = try? NSRegularExpression(pattern: pattern, options: []) {
             let range = NSRange(linkHeader.startIndex..., in: linkHeader)
             if let match = regex.firstMatch(in: linkHeader, options: [], range: range) {
-                // Estrai il valore della pagina
+                // Page value
                 if let pageRange = Range(match.range(at: 1), in: linkHeader) {
                     let lastPage = linkHeader[pageRange]
                     self.lastPage = Int(lastPage) ?? 0
