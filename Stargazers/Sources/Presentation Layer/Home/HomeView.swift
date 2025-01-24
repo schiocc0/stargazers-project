@@ -38,6 +38,7 @@ final class HomeView: UIViewController, BaseView {
         view.insertSubview(backgroundImageView, at: 0)
         
         NSLayoutConstraint.activate([
+            // Background image constraints
             backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -64,16 +65,19 @@ final class HomeView: UIViewController, BaseView {
         stackView.addArrangedSubview(repoTextField)
         
         NSLayoutConstraint.activate([
+            // Logo view constraints
             logoView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100.0),
             logoView.heightAnchor.constraint(equalToConstant: 200),
             logoView.widthAnchor.constraint(equalToConstant: 200),
             logoView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
+            // StackView constraints
             stackView.topAnchor.constraint(greaterThanOrEqualTo: logoView.bottomAnchor, constant: 40.0),
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
+            // Button constraints
             doubleButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 80.0),
             doubleButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -200.0),
             doubleButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),

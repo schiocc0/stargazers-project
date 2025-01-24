@@ -14,7 +14,7 @@ final class UserCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 25 // Per ottenere un cerchio
+        imageView.layer.cornerRadius = 25
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -33,17 +33,16 @@ final class UserCell: UITableViewCell {
         contentView.addSubview(userImage)
         contentView.addSubview(userId)
         
-        // Configura le constraints
         NSLayoutConstraint.activate([
-            // Constraints per l'immagine
+            // Image constraints
             userImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            userImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5.0),
+            userImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5.0),
             userImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             userImage.widthAnchor.constraint(equalToConstant: 50),
             userImage.heightAnchor.constraint(equalToConstant: 50),
-            userImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5.0),
-            userImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5.0),
             
-            // Constraints per l'etichetta
+            // Label constraints
             userId.leadingAnchor.constraint(equalTo: userImage.trailingAnchor, constant: 16),
             userId.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             userId.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)

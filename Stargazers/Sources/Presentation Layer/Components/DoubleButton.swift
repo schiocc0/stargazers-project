@@ -60,11 +60,13 @@ class DoubleButtonView: UIView {
         self.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
+            // Top button constraints
             topButton.topAnchor.constraint(equalTo: topAnchor),
             topButton.widthAnchor.constraint(equalToConstant: 150.0),
             topButton.heightAnchor.constraint(equalToConstant: 40),
             topButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
 
+            //Bottom button constraints
             bottomLinkButton.topAnchor.constraint(equalTo: topButton.bottomAnchor, constant: 10),
             bottomLinkButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             bottomLinkButton.bottomAnchor.constraint(equalTo: bottomAnchor)

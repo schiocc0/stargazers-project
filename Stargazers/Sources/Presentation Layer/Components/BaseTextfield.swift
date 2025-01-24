@@ -12,18 +12,6 @@ final class BaseTextfield: UIView {
     
     var isRequired: Bool = false
     
-//    private lazy var VStackView: UIStackView = {
-//        let stackView: UIStackView = UIStackView(frame: .zero)
-//        
-//        stackView.axis = .vertical
-//        stackView.distribution = .fillProportionally
-//        stackView.spacing = 10.0
-//        stackView.translatesAutoresizingMaskIntoConstraints = false
-//        stackView.alignment = .fill
-//        
-//        return stackView
-//    }()
-    
     private lazy var textFieldView: UITextField = {
         let textField: UITextField = UITextField(frame: .zero)
     
@@ -69,21 +57,24 @@ final class BaseTextfield: UIView {
         
         
         NSLayoutConstraint.activate([
+            
+            // Title label constraints
             titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 40.0),
             titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30.0),
             titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 5.0),
             
+            // Form textfield constraints
             textFieldView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10.0),
             textFieldView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30.0),
             textFieldView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30.0),
+            textFieldView.heightAnchor.constraint(equalToConstant: 40),
             
+            // Error label constraints
             errorLabel.topAnchor.constraint(equalTo: textFieldView.bottomAnchor, constant: 5.0),
             errorLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 35.0),
             errorLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30.0),
             errorLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5.0),
-            
-            textFieldView.heightAnchor.constraint(equalToConstant: 40),
-            
+ 
         ])
         
     }

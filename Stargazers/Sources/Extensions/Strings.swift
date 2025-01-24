@@ -8,6 +8,7 @@
 import UIKit
 
 extension String {
+    
     static var ownerTitle: String = String(localized: "OWNER.FIELD.TITLE")
     static var ownerPlaceholder: String = String(localized: "OWNER.FIELD.PLACEHOLDER")
     
