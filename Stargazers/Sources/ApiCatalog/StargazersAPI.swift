@@ -40,9 +40,9 @@ enum FetchError: Error {
     
     var message: String {
         switch self {
-        case .invalidResponse(let statusCode): return "Invalid response\n(Error: \(String(describing: statusCode)))"
-        case .invalidURL: return "URL is not valid"
-        case .decodingError: return "Error in decoding data"
+        case .invalidResponse(let statusCode): return .decodingErrorMessage(with: String(describing: statusCode))
+        case .invalidURL: return .invalidURLError
+        case .decodingError: return .decodingError
         }
     }
 }

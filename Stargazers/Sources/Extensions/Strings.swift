@@ -5,6 +5,8 @@
 //  Created by Alessia Carrozzo on 19/01/25.
 //
 
+import UIKit
+
 extension String {
     static var ownerTitle: String = String(localized: "OWNER.FIELD.TITLE")
     static var ownerPlaceholder: String = String(localized: "OWNER.FIELD.PLACEHOLDER")
@@ -22,5 +24,13 @@ extension String {
     static var errorTitle = String(localized: "ERROR.TITLE")
     static var errorText = String(localized: "ERROR.TEXT")
     static var errorButton = String(localized: "ERROR.BUTTON.OK")
+    
+    static var invalidURLError = String(localized: "INVALID.URL.ERROR")
+    static var decodingError = String(localized: "DECODING.ERROR")
+    
+    
+    static func decodingErrorMessage(with statusCode: String) -> String {
+        return String(format: NSLocalizedString("INVALID.RESPONSE.ERROR", comment: "Error message with code"), statusCode)
+    }
     
 }

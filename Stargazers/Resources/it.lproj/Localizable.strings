@@ -10,8 +10,13 @@
 "BUTTON.SEARCH" = "Cerca";
 "BUTTON.CLEAR.ALL" = "Svuota campi";
 
-//MARK: Errors
+//MARK: Validators
 "REQUIRED.FIELD.ERROR" = "Campo obbligatorio";
+
+//MARK: API Errors
+"INVALID.RESPONSE.ERROR" = "Risposta non valida \n(Errore: %@)";
+"INVALID.URL.ERROR" = "L'URL non è valido";
+"DECODING.ERROR" = "Errore durante la decodifica dei dati";
 
 //MARK: Home
 "OWNER.FIELD.TITLE" = "Proprietario";
