@@ -67,7 +67,7 @@ class DoubleButtonView: UIView {
             topButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
 
             //Bottom button constraints
-            bottomLinkButton.topAnchor.constraint(equalTo: topButton.bottomAnchor, constant: 10),
+            bottomLinkButton.topAnchor.constraint(equalTo: topButton.bottomAnchor, constant: 20),
             bottomLinkButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             bottomLinkButton.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
@@ -93,8 +93,8 @@ class DoubleButtonView: UIView {
         if let bottomTitle = configuration.bottomButtonTitle {
             let attributedTitle = NSAttributedString(string: bottomTitle, attributes: attributes)
             bottomLinkButton.setAttributedTitle(attributedTitle, for: .normal)
+            setBottomLinkAction(target: self, action: #selector(bottomButtonAction))
         }
-        setBottomLinkAction(target: self, action: #selector(bottomButtonAction))
     }
     
     func reloadButtonState(enabled: Bool) {

@@ -20,10 +20,10 @@
 
 //MARK: Home
 "OWNER.FIELD.TITLE" = "Owner";
-"OWNER.FIELD.PLACEHOLDER" = "Insert owner name";
+"OWNER.FIELD.PLACEHOLDER" = "Insert owner name (ex. twbs)";
 
 "REPO.FIELD.TITLE" = "Repository";
-"REPO.FIELD.PLACEHOLDER" = "Insert repository name";
+"REPO.FIELD.PLACEHOLDER" = "Insert repository name (ex. bootstrap)";
 
 //MARK: UserList
 

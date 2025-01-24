@@ -58,11 +58,12 @@ final class HomeView: UIViewController, BaseView {
         repoTextField = createTextFields(type: configuration.repositoryTextfield)
         doubleButton = createButtonView()
         
+        stackView.addArrangedSubview(ownerTextField)
+        stackView.addArrangedSubview(repoTextField)
+        
         self.view.addSubview(logoView)
         self.view.addSubview(stackView)
         self.view.addSubview(doubleButton)
-        stackView.addArrangedSubview(ownerTextField)
-        stackView.addArrangedSubview(repoTextField)
         
         NSLayoutConstraint.activate([
             // Logo view constraints
@@ -72,14 +73,14 @@ final class HomeView: UIViewController, BaseView {
             logoView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             // StackView constraints
-            stackView.topAnchor.constraint(greaterThanOrEqualTo: logoView.bottomAnchor, constant: 40.0),
+            stackView.topAnchor.constraint(greaterThanOrEqualTo: logoView.bottomAnchor, constant: 20.0),
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
             // Button constraints
-            doubleButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 80.0),
-            doubleButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -200.0),
+            doubleButton.topAnchor.constraint(greaterThanOrEqualTo: stackView.bottomAnchor, constant: 40.0),
+            doubleButton.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor, constant: -100.0),
             doubleButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             doubleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             doubleButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
@@ -97,7 +98,7 @@ final class HomeView: UIViewController, BaseView {
         let stackView = UIStackView()
         stackView.alignment = .fill
         stackView.axis = .vertical
-        stackView.distribution = .fillEqually
+        stackView.distribution = .fillProportionally
         stackView.spacing = 20.0
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
