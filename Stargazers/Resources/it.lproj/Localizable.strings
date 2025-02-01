@@ -14,9 +14,9 @@
 "REQUIRED.FIELD.ERROR" = "Campo obbligatorio";
 
 //MARK: API Errors
-"INVALID.RESPONSE.ERROR" = "Risposta non valida \n(Errore: %@)";
+"INVALID.RESPONSE.ERROR" = "Risposta non valida\n(Errore: %@)";
 "INVALID.URL.ERROR" = "L'URL non è valido";
-"DECODING.ERROR" = "Errore durante la decodifica dei dati";
+"DECODING.ERROR" = "Errore durante la decodifica dei dati\n(Errore: %@)";
 
 //MARK: Home
 "OWNER.FIELD.TITLE" = "Proprietario";

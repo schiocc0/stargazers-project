@@ -71,7 +71,7 @@ final class UsersListView: UIViewController, BaseView {
                 case .finished(let error):
                     hideLoader()
                     if let error = error {
-                        showAlert(title: .errorTitle, message: error.message)
+                        showAlert(title: .errorTitle, message: error.localizedDescription)
                     }
                 }
             }

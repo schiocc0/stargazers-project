@@ -9,11 +9,9 @@ import Foundation
 import UIKit
 import Combine
 
-typealias User = StargazersAPI.User
-
 enum Status: Equatable {
     case loading
-    case finished(error: FetchError?)
+    case finished(error: ApiError?)
     
     static func == (lhs: Status, rhs: Status) -> Bool {
         switch (lhs, rhs) {
@@ -74,7 +72,7 @@ final class UsersListViewModel: BaseViewModel {
             return users
         }
         catch {
-            self.status = .finished(error: error as? FetchError)
+            self.status = .finished(error: error as? ApiError)
         }
         
         return users
@@ -82,41 +80,26 @@ final class UsersListViewModel: BaseViewModel {
     
     /// Fetch API data
     private func fetchStargazesApi(owner: String, repo: String) async throws -> [StargazersAPI.User] {
-        let api = StargazersAPI.path.addPathParameters(parameters: [
-            StargazersAPI.PathParameters.owner.rawValue : owner,
-            StargazersAPI.PathParameters.repo.rawValue : repo
-        ])
-        
-        guard let stargazeApiUrl = URL(string: api) else {
-            throw FetchError.invalidURL
-        }
-        
-        let newStargazeApiUrl = stargazeApiUrl.appending(queryItems: [
-            URLQueryItem(name: StargazersAPI.QueryParameters.per_page.rawValue, value: numberElementsPerPage),
-            URLQueryItem(name: StargazersAPI.QueryParameters.page.rawValue, value: String(describing: currentPage))
-        ])
-        
-        let (data, response) = try await URLSession.shared.data(from: newStargazeApiUrl)
-            
-        guard let httpResponse = response as? HTTPURLResponse else {
-            throw FetchError.invalidResponse(statusCode: -1)
-        }
-        
-        guard httpResponse.statusCode == 200 else {
-            throw FetchError.invalidResponse(statusCode: httpResponse.statusCode)
-        }
+
+        let result: CallResult<[User]> = try await NetworkManager.shared.callService(
+            endpoint: StargazersAPI.path,
+            method: StargazersAPI.method,
+            pathParameters: [
+                StargazersAPI.PathParameters.owner.rawValue : owner,
+                StargazersAPI.PathParameters.repo.rawValue : repo
+            ],
+            queryParameters: [
+                StargazersAPI.QueryParameters.per_page.rawValue : numberElementsPerPage,
+                StargazersAPI.QueryParameters.page.rawValue : String(describing: currentPage),
+            ])
 
         if currentPage == 1 {
-            if let link = httpResponse.allHeaderFields["Link"] as? String {
+            if let link = result.headers["Link"] as? String {
                 retrieveLastPage(from: link)
             }
         }
         
-        do {
-            return try JSONDecoder().decode([StargazersAPI.User].self, from: data)
-        } catch {
-            throw FetchError.decodingError
-        }
+        return result.response
     }
     
     /// Tableview datasource configuration
@@ -157,20 +140,10 @@ final class UsersListViewModel: BaseViewModel {
 
     /// Download user avatar
     private func fetchImage(from urlString: String) async throws -> UIImage? {
-        guard let url = URL(string: urlString) else {
-            throw FetchError.invalidURL
-        }
         
-        let (data, response) = try await URLSession.shared.data(from: url)
-        guard let httpResponse = response as? HTTPURLResponse else {
-            throw FetchError.invalidResponse(statusCode: -1)
-        }
+        let imageData = try await NetworkManager.shared.downloadImage(endpoint: urlString)
         
-        guard httpResponse.statusCode == 200 else {
-            throw FetchError.invalidResponse(statusCode: httpResponse.statusCode)
-        }
-        
-        return UIImage(data: data)
+        return UIImage(data: imageData)
     }
     
     /// Retrieve last page

@@ -26,12 +26,14 @@ extension String {
     static var errorText = String(localized: "ERROR.TEXT")
     static var errorButton = String(localized: "ERROR.BUTTON.OK")
     
+    
+    //MARK: Errors
     static var invalidURLError = String(localized: "INVALID.URL.ERROR")
-    static var decodingError = String(localized: "DECODING.ERROR")
-    
-    
-    static func decodingErrorMessage(with statusCode: String) -> String {
+    static func invalidResponse(with statusCode: String) -> String {
         return String(format: NSLocalizedString("INVALID.RESPONSE.ERROR", comment: "Error message with code"), statusCode)
+    }
+    static func decodingError(with reason: String) -> String {
+        return String(format: NSLocalizedString("DECODING.ERROR", comment: "Error message with reason"), reason)
     }
     
 }

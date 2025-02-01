@@ -16,7 +16,7 @@
 //MARK: API Errors
 "INVALID.RESPONSE.ERROR" = "Invalid response\n(Error: %@)";
 "INVALID.URL.ERROR" = "URL is not valid";
-"DECODING.ERROR" = "Error in decoding data";
+"DECODING.ERROR" = "Error in decoding data\n(Error: %@)";
 
 //MARK: Home
 "OWNER.FIELD.TITLE" = "Owner";
