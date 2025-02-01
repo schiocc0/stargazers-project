@@ -55,11 +55,10 @@ final class UsersListView: UIViewController, BaseView {
     private func bind() {
         guard let viewModel = viewModel else { return }
         viewModel.$dataSource
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
+                self.tableView.reloadData()
             }
         .store(in: &cancellables)
         
