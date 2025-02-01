@@ -8,11 +8,18 @@
 import Foundation
 import UIKit
 
-final class StargazersAPI {
+typealias User = StargazersAPI.User
+
+final class StargazersAPI: ApiObject {
+    
+    var request: CodableVoid = CodableVoid()
+    var response: [User] = []
+    
+    static var method: HTTPMethod = .get
     
     static var path: String = "https://api.github.com/repos/{owner}/{repo}/stargazers"
             
-    struct User: Decodable {
+    struct User: Codable {
         let login: String
         let avatarURL: String
         
@@ -30,19 +37,5 @@ final class StargazersAPI {
     enum QueryParameters: String {
         case per_page
         case page
-    }
-}
-
-enum FetchError: Error {
-    case invalidResponse(statusCode: Int)
-    case invalidURL
-    case decodingError
-    
-    var message: String {
-        switch self {
-        case .invalidResponse(let statusCode): return .decodingErrorMessage(with: String(describing: statusCode))
-        case .invalidURL: return .invalidURLError
-        case .decodingError: return .decodingError
-        }
     }
 }

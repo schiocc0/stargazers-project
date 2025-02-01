@@ -9,9 +9,14 @@ import Foundation
 
 protocol ApiObject: AnyObject {
     
-    static var request: Any { get set }
-    static var response: Any { get set }
+    associatedtype Input: Codable
+    associatedtype Output: Codable
     
+    var request: Input { get }
+    var response: Output { get }
+    
+    static var method: HTTPMethod { get }
     static var path: String { get set }
-    
 }
+
+struct CodableVoid: Codable { }
