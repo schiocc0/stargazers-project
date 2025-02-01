@@ -81,7 +81,7 @@ class DoubleButtonView: UIView {
         
         // Configure top button
         topButton.setTitle(configuration.topButtonTitle.uppercased(), for: .normal)
-        topButton.alpha = configuration.enabled ? 1.0 : 0.5
+        topButton.alpha = configuration.enabled ? 0.7 : 0.2
         setTopButtonAction(target: self, action: #selector(topButtonAction))
 
         // Configure bottom button (link)
@@ -99,9 +99,9 @@ class DoubleButtonView: UIView {
     
     func reloadButtonState(enabled: Bool) {
         if enabled {
-            topButton.alpha = 1.0
+            topButton.alpha = 0.7
         } else {
-            topButton.alpha = 0.5
+            topButton.alpha = 0.2
         }
     }
 
