@@ -28,6 +28,7 @@ final class HomeView: UIViewController, BaseView {
         
         setupBackground()
         setupViews()
+        addLostFocusGestureRecognizer()
     }
 
     private func setupBackground() {
@@ -68,9 +69,9 @@ final class HomeView: UIViewController, BaseView {
         NSLayoutConstraint.activate([
             // Logo view constraints
             logoView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100.0),
-            logoView.heightAnchor.constraint(equalToConstant: 200),
-            logoView.widthAnchor.constraint(equalToConstant: 200),
             logoView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            logoView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.530),
+            logoView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.250),
             
             // StackView constraints
             stackView.topAnchor.constraint(greaterThanOrEqualTo: logoView.bottomAnchor, constant: 20.0),
@@ -78,9 +79,15 @@ final class HomeView: UIViewController, BaseView {
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
+            {
+                let constraint = stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+                constraint.priority = .defaultHigh
+                return constraint
+            }(),
+            
             // Button constraints
-            doubleButton.topAnchor.constraint(greaterThanOrEqualTo: stackView.bottomAnchor, constant: 40.0),
-            doubleButton.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor, constant: -100.0),
+            doubleButton.topAnchor.constraint(greaterThanOrEqualTo: stackView.bottomAnchor, constant: 20.0),
+            doubleButton.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor, constant: -120.0),
             doubleButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             doubleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             doubleButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
@@ -160,6 +167,16 @@ final class HomeView: UIViewController, BaseView {
     private func clearForm() {
         ownerTextField.clearValues()
         repoTextField.clearValues()
+    }
+    
+    private func addLostFocusGestureRecognizer() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
 
